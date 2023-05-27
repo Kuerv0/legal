@@ -115,8 +115,9 @@ class DocumentsDashboard extends React.Component {
 
   render() {
     return (
-      <div className='ui three column centered grid'>
-        <div className='ui centered items'>
+      <div className='ui padded grid'>
+        <div className='two wide column'></div>
+        <div className='eight wide column'>
           <EditableDocumentList
             documents={this.state.documents}
             onFormSubmit={this.handleEditFormSubmit}
@@ -124,10 +125,13 @@ class DocumentsDashboard extends React.Component {
             onStartClick={this.handleStartClick}
             onStopClick={this.handleStopClick}
           />
-          <ToggleableDocumentForm
+          </div>
+          <div className='four wide column'>
+            <ToggleableDocumentForm
             onFormSubmit={this.handleCreateFormSubmit}
-          />
-        </div>
+           />
+           </div>
+           <div className='two wide column'></div>}
       </div>
     );
   }
@@ -163,10 +167,11 @@ class ToggleableDocumentForm extends React.Component {
       return (
         <div className='ui basic content center aligned segment'>
           <button
-            className='ui basic button icon'
+            className='ui button'
             onClick={this.handleFormOpen}
-          >
-            <i className='plus icon' />
+            id = "button"
+          > 
+            <i className='plus icon' /> Crear
           </button>
         </div>
       );
@@ -190,11 +195,22 @@ class EditableDocumentList extends React.Component {
         onStopClick={this.props.onStopClick}
       />
     ));
-    return (
+    if (documents.length ===0){
+      return (
+        <div className="ui basic segment">
+          <div className="ui header">
+            <h3>No se han encontrado documentos.</h3>
+            
+          </div>
+        </div>
+      );
+    } else {
+      return (
       <div className="ui items" id='documents'>
         {documents}
       </div>
     );
+      }
   }
 }
 
@@ -284,8 +300,8 @@ class Document extends React.Component {
     return (
       <div className='item'>
 
-        <div className="image">
-          <img href="#" src="./images/hola.jpg"/>
+        <div className="icon">
+          <i className="huge file alternate outline icon"/>
         </div>
 
         <div className="content">
@@ -378,7 +394,7 @@ class DocumentForm extends React.Component {
             </div>
             <div className='field'>
               <label>Descripción</label>
-              <input
+              <textarea
                 type='text'
                 value={this.state.description}
                 onChange={this.handleDescriptionChange}
@@ -386,13 +402,13 @@ class DocumentForm extends React.Component {
             </div>
             <div className='ui two bottom attached buttons'>
               <button
-                className='ui basic blue button'
+                className='ui basic green button'
                 onClick={this.handleSubmit}
               >
                 {submitText}
               </button>
               <button
-                className='ui basic red button'
+                className='ui basic button'
                 onClick={this.props.onFormClose}
               >
                 Cancelar

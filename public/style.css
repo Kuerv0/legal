@@ -1,7 +1,58 @@
+#unal-top{
+  background-color: #5b5b5b;
+  box-sizing: border-box;
+  display: flex;
+  color: white;
+}
+
+#logo {
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+#site-container {
+  display: inline-block;
+  align-self: center;
+
+}
+#text {
+  font-family: 'Ancizar sans', Tahoma, Geneva, sans-serif;
+  font-weight: normal;
+  text-align: center;
+  color: rgb(93, 93, 93);
+
+}
+
+#title {
+  font-size: 1.4em;
+  color: white;
+  font-family: 'Ancizar sans', Tahoma, Geneva, sans-serif;
+  font-weight: normal;
+  text-align: center;
+
+}
 #main {
-  margin-top: 1em;
+  background-color: rgb(221, 221, 221);
+  flex-grow: 1;
+  
 }
 
 #content {
   margin-top: 3em;
+}
+
+#button {
+  background-color: rgb(148, 180, 59);
+  color: white;
+}
+
+html, body {
+  height:100%;
+  
+  display:flex;
+  flex-direction:column;
+}
+
+body > * {
+  flex-shrink: 0;
 }
