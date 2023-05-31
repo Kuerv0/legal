@@ -2,66 +2,67 @@
 /* eslint-disable no-undef */
 window.client = (function () {
   function getDocuments(success) {
-    return fetch('/api/timers', {
+    return fetch("/api/timers", {
       headers: {
-        Accept: 'application/json',
+        Accept: "application/json",
       },
-    }).then(checkStatus)
+    })
+      .then(checkStatus)
       .then(parseJSON)
       .then(success);
   }
 
   function createDocument(data) {
-    return fetch('/api/timers', {
-      method: 'post',
+    return fetch("/api/timers", {
+      method: "post",
       body: JSON.stringify(data),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     }).then(checkStatus);
   }
 
   function updateDocument(data) {
-    return fetch('/api/timers', {
-      method: 'put',
+    return fetch("/api/timers", {
+      method: "put",
       body: JSON.stringify(data),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     }).then(checkStatus);
   }
 
   function deleteDocument(data) {
-    return fetch('/api/timers', {
-      method: 'delete',
+    return fetch("/api/timers", {
+      method: "delete",
       body: JSON.stringify(data),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     }).then(checkStatus);
   }
 
   function startDocument(data) {
-    return fetch('/api/timers/start', {
-      method: 'post',
+    return fetch("/api/timers/start", {
+      method: "post",
       body: JSON.stringify(data),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     }).then(checkStatus);
   }
 
   function stopDocument(data) {
-    return fetch('/api/timers/stop', {
-      method: 'post',
+    return fetch("/api/timers/stop", {
+      method: "post",
       body: JSON.stringify(data),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     }).then(checkStatus);
   }
@@ -90,4 +91,4 @@ window.client = (function () {
     stopDocument,
     deleteDocument,
   };
-}());
+})();

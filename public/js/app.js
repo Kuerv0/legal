@@ -9,9 +9,8 @@ class DocumentsDashboard extends React.Component {
   }
 
   loadDocumentsFromServer = () => {
-    client.getDocuments((serverDocuments) => (
-        this.setState({ documents: serverDocuments })
-      )
+    client.getDocuments((serverDocuments) =>
+      this.setState({ documents: serverDocuments })
     );
   };
 
@@ -63,12 +62,10 @@ class DocumentsDashboard extends React.Component {
 
   deleteDocument = (documentId) => {
     this.setState({
-      documents: this.state.documents.filter(t => t.id !== documentId),
+      documents: this.state.documents.filter((t) => t.id !== documentId),
     });
 
-    client.deleteDocument(
-      { id: documentId }
-    );
+    client.deleteDocument({ id: documentId });
   };
 
   startDocument = (documentId) => {
@@ -86,9 +83,7 @@ class DocumentsDashboard extends React.Component {
       }),
     });
 
-    client.startDocument(
-      { id: documentId, start: now }
-    );
+    client.startDocument({ id: documentId, start: now });
   };
 
   stopDocument = (documentId) => {
@@ -108,16 +103,14 @@ class DocumentsDashboard extends React.Component {
       }),
     });
 
-    client.stopDocument(
-      { id: documentId, stop: now }
-    );
+    client.stopDocument({ id: documentId, stop: now });
   };
 
   render() {
     return (
-      <div className='ui padded grid'>
-        <div className='two wide column'></div>
-        <div className='eight wide column'>
+      <div className="ui padded grid">
+        <div className="two wide column"></div>
+        <div className="eight wide column">
           <EditableDocumentList
             documents={this.state.documents}
             onFormSubmit={this.handleEditFormSubmit}
@@ -125,13 +118,11 @@ class DocumentsDashboard extends React.Component {
             onStartClick={this.handleStartClick}
             onStopClick={this.handleStopClick}
           />
-          </div>
-          <div className='four wide column'>
-            <ToggleableDocumentForm
-            onFormSubmit={this.handleCreateFormSubmit}
-           />
-           </div>
-           <div className='two wide column'></div>}
+        </div>
+        <div className="four wide column">
+          <ToggleableDocumentForm onFormSubmit={this.handleCreateFormSubmit} />
+        </div>
+        <div className="two wide column"></div>
       </div>
     );
   }
@@ -165,13 +156,13 @@ class ToggleableDocumentForm extends React.Component {
       );
     } else {
       return (
-        <div className='ui basic content center aligned segment'>
+        <div className="ui basic content center aligned segment">
           <button
-            className='ui button'
+            className="ui button"
             onClick={this.handleFormOpen}
-            id = "button"
-          > 
-            <i className='plus icon' /> Crear
+            id="button"
+          >
+            <i className="plus icon" /> Crear
           </button>
         </div>
       );
@@ -195,22 +186,21 @@ class EditableDocumentList extends React.Component {
         onStopClick={this.props.onStopClick}
       />
     ));
-    if (documents.length ===0){
+    if (documents.length === 0) {
       return (
         <div className="ui basic segment">
           <div className="ui header">
             <h3>No se han encontrado documentos.</h3>
-            
           </div>
         </div>
       );
     } else {
       return (
-      <div className="ui items" id='documents'>
-        {documents}
-      </div>
-    );
-      }
+        <div className="ui items" id="documents">
+          {documents}
+        </div>
+      );
+    }
   }
 }
 
@@ -294,14 +284,14 @@ class Document extends React.Component {
     // El elapsedString se puede convertir a fechas, por eso no
     // lo quité
     const elapsedString = helpers.renderElapsedString(
-      this.props.elapsed, this.props.runningSince
+      this.props.elapsed,
+      this.props.runningSince
     );
 
     return (
-      <div className='item'>
-
+      <div className="item">
         <div className="icon">
-          <i className="huge file alternate outline icon"/>
+          <i className="huge file alternate outline icon" />
         </div>
 
         <div className="content">
@@ -313,19 +303,18 @@ class Document extends React.Component {
 
           <div className="meta">
             <span
-              className='right floated edit icon'
+              className="right floated edit icon"
               onClick={this.props.onEditClick}
             >
-              <i className='edit icon' />
+              <i className="edit icon" />
             </span>
             <span
-              className='right floated trash icon'
+              className="right floated trash icon"
               onClick={this.handleTrashClick}
             >
-              <i className='trash icon' />
+              <i className="trash icon" />
             </span>
           </div>
-
         </div>
       </div>
     );
@@ -337,7 +326,7 @@ class DocumentActionButton extends React.Component {
     if (this.props.documentIsRunning) {
       return (
         <div
-          className='ui bottom attached red basic button'
+          className="ui bottom attached red basic button"
           onClick={this.props.onStopClick}
         >
           Stop
@@ -346,7 +335,7 @@ class DocumentActionButton extends React.Component {
     } else {
       return (
         <div
-          className='ui bottom attached green basic button'
+          className="ui bottom attached green basic button"
           onClick={this.props.onStartClick}
         >
           Start
@@ -358,8 +347,8 @@ class DocumentActionButton extends React.Component {
 
 class DocumentForm extends React.Component {
   state = {
-    title: this.props.title || '',
-    description: this.props.description || '',
+    title: this.props.title || "",
+    description: this.props.description || "",
   };
 
   handleTitleChange = (e) => {
@@ -379,36 +368,36 @@ class DocumentForm extends React.Component {
   };
 
   render() {
-    const submitText = this.props.id ? 'Actualizar' : 'Crear';
+    const submitText = this.props.id ? "Actualizar" : "Crear";
     return (
-      <div className='ui centered card'>
-        <div className='content'>
-          <div className='ui form'>
-            <div className='field'>
+      <div className="ui centered card">
+        <div className="content">
+          <div className="ui form">
+            <div className="field">
               <label>Título</label>
               <input
-                type='text'
+                type="text"
                 value={this.state.title}
                 onChange={this.handleTitleChange}
               />
             </div>
-            <div className='field'>
+            <div className="field">
               <label>Descripción</label>
               <textarea
-                type='text'
+                type="text"
                 value={this.state.description}
                 onChange={this.handleDescriptionChange}
               />
             </div>
-            <div className='ui two bottom attached buttons'>
+            <div className="ui two bottom attached buttons">
               <button
-                className='ui basic green button'
+                className="ui basic green button"
                 onClick={this.handleSubmit}
               >
                 {submitText}
               </button>
               <button
-                className='ui basic button'
+                className="ui basic button"
                 onClick={this.props.onFormClose}
               >
                 Cancelar
@@ -421,8 +410,4 @@ class DocumentForm extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <DocumentsDashboard />,
-  document.getElementById('content')
-);
-
+ReactDOM.render(<DocumentsDashboard />, document.getElementById("content"));

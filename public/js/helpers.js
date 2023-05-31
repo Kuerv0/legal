@@ -1,8 +1,8 @@
 window.helpers = (function () {
   function newDocument(attrs = {}) {
     const document = {
-      title: attrs.title || 'Documento',
-      description: attrs.description || 'Descripción',
+      title: attrs.title || "Documento",
+      description: attrs.description || "Descripción",
       id: uuid.v4(), // eslint-disable-line no-undef
       elapsed: 0,
     };
@@ -36,7 +36,7 @@ window.helpers = (function () {
       pad(hours.toString(), 2),
       pad(minutes.toString(), 2),
       pad(seconds.toString(), 2),
-    ].join(':');
+    ].join(":");
 
     return humanized;
   }
@@ -53,4 +53,4 @@ window.helpers = (function () {
     findById,
     renderElapsedString,
   };
-}());
+})();
