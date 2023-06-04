@@ -1,4 +1,4 @@
-#unal-top{
+#unal-top {
   background-color: #5b5b5b;
   box-sizing: border-box;
   display: flex;
@@ -13,14 +13,12 @@
 #site-container {
   display: inline-block;
   align-self: center;
-
 }
 #text {
   font-family: 'Ancizar sans', Tahoma, Geneva, sans-serif;
   font-weight: normal;
   text-align: center;
   color: rgb(93, 93, 93);
-
 }
 
 #title {
@@ -29,12 +27,10 @@
   font-family: 'Ancizar sans', Tahoma, Geneva, sans-serif;
   font-weight: normal;
   text-align: center;
-
 }
 #main {
   background-color: rgb(221, 221, 221);
   flex-grow: 1;
-  
 }
 
 #content {
@@ -46,11 +42,13 @@
   color: white;
 }
 
-html, body {
-  height:100%;
-  
-  display:flex;
-  flex-direction:column;
+html,
+body {
+  margin: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 body > * {
