@@ -14,16 +14,23 @@ const DocumentForm = ({ onFormSubmit, onFormClose, document = {} }) => {
     setState({ ...state, informacion: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleNumeroChange = (e) => {
+    setState({ ...state, numero: e.target.value });
+  };
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+
     onFormSubmit({
       ...state,
+      numero: Number.parseInt(state.numero),
     });
   };
 
   return (
     <div className="ui centered card">
       <div className="content">
-        <div className="ui form">
+        <form className="ui form" onSubmit={handleSubmit}>
           <div className="field">
             <label>Título</label>
             <input
@@ -40,15 +47,27 @@ const DocumentForm = ({ onFormSubmit, onFormClose, document = {} }) => {
               onChange={handleDescriptionChange}
             />
           </div>
+          <div className="field">
+            <label>Número</label>
+            <input
+              type="number"
+              value={state.numero}
+              onChange={handleNumeroChange}
+            />
+          </div>
           <div className="ui two bottom attached buttons">
-            <button className="ui basic green button" onClick={handleSubmit}>
+            <button type="submit" className="ui basic green button">
               {submitText}
             </button>
-            <button className="ui basic button" onClick={onFormClose}>
+            <button
+              type="button"
+              className="ui basic button"
+              onClick={onFormClose}
+            >
               Cancelar
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

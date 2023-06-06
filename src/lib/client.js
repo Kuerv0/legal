@@ -16,7 +16,7 @@ export default class Client {
   }
 
   createDocument(data) {
-    return this.httpClient.post('api/documentos', { json: data });
+    return this.httpClient.post('api/documentos', { json: data }).json();
   }
 
   updateDocument(data) {

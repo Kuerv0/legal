@@ -29,13 +29,17 @@ const DocumentsDashboard = () => {
 
   const createDocument = (document) => {
     const newDoc = newDocument(document);
-    console.log(document);
 
     setDocuments([...documents, newDoc]);
 
-    client.createDocument(newDoc).catch(() => {
-      setDocuments([...documents]);
-    });
+    client
+      .createDocument(newDoc)
+      .then((doc) => {
+        setDocuments([...documents, doc]);
+      })
+      .catch(() => {
+        setDocuments([...documents]);
+      });
   };
 
   const updateDocument = (attrs) => {

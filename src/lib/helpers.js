@@ -1,20 +1,17 @@
 export function newDocument(attrs) {
   const defaultAttrs = {
-    tipo: 'Documento',
-    informacion: 'Descripción',
+    id: new Date().getTime(),
+    id_cuerpo_colegiado: 1,
+    id_usuario: 11,
+    tipo: '',
+    informacion: '',
     anio: new Date().getFullYear(),
-    numero: new Date().getTime(),
-  };
-
-  const mergedAttrs = {
-    ...defaultAttrs,
-    ...attrs,
+    numero: '',
   };
 
   const document = {
-    ...mergedAttrs,
-    id_cuerpo_colegiado: 1,
-    id_usuario: 11,
+    ...defaultAttrs,
+    ...attrs,
   };
 
   return document;
