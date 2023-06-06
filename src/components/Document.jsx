@@ -5,17 +5,33 @@ const Document = ({ document, onEditClick, onTrashClick }) => {
     onTrashClick(document.id);
   };
 
+  const cleanText = (str) => {
+    // Limpiar la información y los caracteres especiales
+    str = str.replace(/[\n\t]/g, " ");
+    str = str.replace(/\s+/g, ' ').trim()
+    str = '"Por el cual ' + str.replace(/.+Por el cual /g, ' ')
+
+    // Cortar el texto en el caracter 500 y poner puntos suspensivos
+    if (str.length > 500) {
+      str = str.slice(0, 500) + " ..."
+    }
+
+    return str
+  }
+
   return (
-    <div className="item">
+    <div className="item documento">
       <div className="icon">
         <i className="huge file alternate outline icon" />
       </div>
 
       <div className="content">
-        <a href="#">{document.tipo}</a>
+        <a href="document.id">
+          {document.tipo.charAt(0).toUpperCase() + document.tipo.slice(1)} {String(document.numero).padStart(2, "0")} de {document.anio} {}
+        </a>
 
         <div className="description">
-          <span>{document.informacion}</span>
+            {cleanText(document.informacion)}
         </div>
 
         <div className="meta">

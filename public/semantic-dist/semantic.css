@@ -28913,10 +28913,10 @@ a.ui.card:hover,
 
 .ui.items > .item {
   display: flex;
-  margin: 1em 0em;
+  margin: 2em 0em;
   width: 100%;
   min-height: 0px;
-  background: transparent;
+  /* background: transparent; */
   padding: 0em;
   border: none;
   border-radius: 0rem;
@@ -28925,8 +28925,39 @@ a.ui.card:hover,
   z-index: '';
 }
 
+.ui.items > .item.documento {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 1.5em;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+}
+
 .ui.items > .item a {
   cursor: pointer;
+}
+
+.ui.items > .item.documento a {
+  cursor: pointer;
+  font-size: 1.5rem
+}
+.ui.items > .item.documento > .icon i {
+  font-size: 3rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ui.items > .item.documento > .content > .meta > span {
+  cursor: pointer;
+}
+
+.ui.items > .item.documento > .content > .meta > span.edit:hover {
+  color: #4183C4;
+}
+
+.ui.items > .item.documento > .content > .meta > span.trash:hover {
+  color: #C44141;
 }
 
 /*--------------
@@ -29079,6 +29110,7 @@ a.ui.card:hover,
   font-size: 1em;
   line-height: 1.4285em;
   color: rgba(0, 0, 0, 0.87);
+  text-align: justify;
 }
 
 /*--------------
