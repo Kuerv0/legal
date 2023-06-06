@@ -3,17 +3,7 @@ import { useState } from 'react';
 import Document from './Document';
 import DocumentForm from './DocumentForm';
 
-const EditableDocument = ({
-  id,
-  title,
-  description,
-  runningSince,
-  elapsed,
-  onTrashClick,
-  onStartClick,
-  onStopClick,
-  onFormSubmit,
-}) => {
+const EditableDocument = ({ document, onTrashClick, onFormSubmit }) => {
   const [editFormOpen, setEditFormOpen] = useState(false);
 
   const handleEditClick = () => {
@@ -40,9 +30,7 @@ const EditableDocument = ({
   if (editFormOpen) {
     return (
       <DocumentForm
-        id={id}
-        title={title}
-        description={description}
+        document={document}
         onFormSubmit={handleSubmit}
         onFormClose={handleFormClose}
       />
@@ -50,15 +38,9 @@ const EditableDocument = ({
   } else {
     return (
       <Document
-        id={id}
-        title={title}
-        description={description}
-        elapsed={elapsed}
-        runningSince={runningSince}
+        document={document}
         onEditClick={handleEditClick}
         onTrashClick={onTrashClick}
-        onStartClick={onStartClick}
-        onStopClick={onStopClick}
       />
     );
   }

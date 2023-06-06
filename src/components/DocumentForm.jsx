@@ -1,29 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { newDocument } from '../lib/helpers';
 
-const DocumentForm = ({
-  onFormSubmit,
-  onFormClose,
-  id = undefined,
-  title = '',
-  description = '',
-}) => {
-  const submitText = id ? 'Actualizar' : 'Crear';
-  const [state, setState] = useState({ title, description });
+const DocumentForm = ({ onFormSubmit, onFormClose, document = {} }) => {
+  const submitText = document.id ? 'Actualizar' : 'Crear';
+  const [state, setState] = useState(newDocument({ ...document }));
 
   const handleTitleChange = (e) => {
-    setState({ ...state, title: e.target.value });
+    setState({ ...state, tipo: e.target.value });
   };
 
   const handleDescriptionChange = (e) => {
-    setState({ ...state, description: e.target.value });
+    setState({ ...state, informacion: e.target.value });
   };
 
   const handleSubmit = () => {
     onFormSubmit({
-      id,
-      title: state.title,
-      description: state.description,
+      ...state,
     });
   };
 
@@ -35,7 +28,7 @@ const DocumentForm = ({
             <label>Título</label>
             <input
               type="text"
-              value={state.title}
+              value={state.tipo}
               onChange={handleTitleChange}
             />
           </div>
@@ -43,7 +36,7 @@ const DocumentForm = ({
             <label>Descripción</label>
             <textarea
               type="text"
-              value={state.description}
+              value={state.informacion}
               onChange={handleDescriptionChange}
             />
           </div>

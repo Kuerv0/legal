@@ -1,42 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from 'react';
-import { renderElapsedString } from '../lib/helpers';
 
-const Document = ({
-  id,
-  title,
-  description,
-  runningSince,
-  elapsed,
-  onEditClick,
-  onTrashClick,
-  onStartClick,
-  onStopClick,
-}) => {
-  // eslint-disable-next-line no-unused-vars
-  const elapsedString = renderElapsedString(elapsed, runningSince);
-
-  // eslint-disable-next-line no-unused-vars
-  const handleStartClick = () => {
-    onStartClick(id);
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const handleStopClick = () => {
-    onStopClick(id);
-  };
-
+const Document = ({ document, onEditClick, onTrashClick }) => {
   const handleTrashClick = () => {
-    onTrashClick(id);
+    onTrashClick(document.id);
   };
-
-  useEffect(() => {
-    const forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
-
-    return () => {
-      clearInterval(forceUpdateInterval);
-    };
-  }, []);
 
   return (
     <div className="item">
@@ -45,10 +12,10 @@ const Document = ({
       </div>
 
       <div className="content">
-        <a href="#">{title}</a>
+        <a href="#">{document.tipo}</a>
 
         <div className="description">
-          <span>{description}</span>
+          <span>{document.informacion}</span>
         </div>
 
         <div className="meta">

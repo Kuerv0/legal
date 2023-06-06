@@ -8,26 +8,22 @@ export default class Client {
   }
 
   getDocuments() {
-    return this.httpClient.get('api/timers').json();
+    return this.httpClient.get('api/documentos').json();
+  }
+
+  getDocumentById(id) {
+    return this.httpClient.get(`api/documentos/${id}`).json();
   }
 
   createDocument(data) {
-    return this.httpClient.post('api/timers', { json: data });
+    return this.httpClient.post('api/documentos', { json: data });
   }
 
   updateDocument(data) {
-    return this.httpClient.put('api/timers', { json: data });
+    return this.httpClient.patch(`api/documentos/${data.id}`, { json: data });
   }
 
-  deleteDocument(data) {
-    return this.httpClient.delete('api/timers', { json: data });
-  }
-
-  startDocument(data) {
-    return this.httpClient.post('api/timers/start', { json: data });
-  }
-
-  stopDocument(data) {
-    return this.httpClient.post('api/timers/stop', { json: data });
+  deleteDocumentById(id) {
+    return this.httpClient.delete(`api/documentos/${id}`);
   }
 }

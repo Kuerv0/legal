@@ -27,28 +27,23 @@ const DocumentsDashboard = () => {
     deleteDocument(documentId);
   };
 
-  const handleStartClick = (documentId) => {
-    startDocument(documentId);
-  };
-
-  const handleStopClick = (documentId) => {
-    stopDocument(documentId);
-  };
-
   const createDocument = (document) => {
-    const t = newDocument(document);
-    setDocuments([...documents, t]);
+    const newDoc = newDocument(document);
+    console.log(document);
 
-    client.createDocument(t);
+    setDocuments([...documents, newDoc]);
+
+    client.createDocument(newDoc).catch(() => {
+      setDocuments([...documents]);
+    });
   };
 
   const updateDocument = (attrs) => {
     const newDocuments = documents.map((document) => {
       if (document.id === attrs.id) {
-        return Object.assign({}, document, {
-          title: attrs.title,
-          description: attrs.description,
-        });
+        return {
+          ...attrs,
+        };
       } else {
         return document;
       }
@@ -64,48 +59,14 @@ const DocumentsDashboard = () => {
 
     setDocuments(newDocuments);
 
-    client.deleteDocument({ id: documentId });
-  };
-
-  const startDocument = (documentId) => {
-    const now = Date.now();
-    const newDocuments = documents.map((document) => {
-      if (document.id === documentId) {
-        return Object.assign({}, document, {
-          runningSince: now,
-        });
-      } else {
-        return document;
-      }
+    client.deleteDocumentById(documentId).catch(() => {
+      setDocuments(documents);
     });
-
-    setDocuments(newDocuments);
-
-    client.startDocument({ id: documentId, start: now });
-  };
-
-  const stopDocument = (documentId) => {
-    const now = Date.now();
-    const newDocuments = documents.map((document) => {
-      if (document.id === documentId) {
-        const lastElapsed = now - document.runningSince;
-        return Object.assign({}, document, {
-          elapsed: document.elapsed + lastElapsed,
-          runningSince: null,
-        });
-      } else {
-        return document;
-      }
-    });
-
-    setDocuments(newDocuments);
-
-    client.stopDocument({ id: documentId, stop: now });
   };
 
   useEffect(() => {
     loadDocumentsFromServer();
-    setInterval(loadDocumentsFromServer, 5000);
+    // setInterval(loadDocumentsFromServer, 5000);
   }, []);
 
   return (
@@ -116,8 +77,6 @@ const DocumentsDashboard = () => {
           documents={documents}
           onFormSubmit={handleEditFormSubmit}
           onTrashClick={handleTrashClick}
-          onStartClick={handleStartClick}
-          onStopClick={handleStopClick}
         />
       </div>
       <div className="four wide column">
