@@ -27404,10 +27404,9 @@ Floated Menu / Item
 .ui.card > .content {
   flex-grow: 1;
   border: none;
-  border-top: 1px solid rgba(34, 36, 38, 0.1);
-  background: none;
+  background: rgba(255, 255, 255, 0.6);
   margin: 0em;
-  padding: 1em 1em;
+  padding: 2em;
   box-shadow: none;
   font-size: 1em;
   border-radius: 0em;

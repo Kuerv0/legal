@@ -9,7 +9,7 @@ const Document = ({ document, onEditClick, onTrashClick }) => {
     // Limpiar la información y los caracteres especiales
     str = str.replace(/[\n\t]/g, " ");
     str = str.replace(/\s+/g, ' ').trim()
-    str = '"Por el cual ' + str.replace(/.+Por el cual /g, ' ')
+    str = '"Por el cual se ' + str.replace(/.*Por .+ cual se/g, '')
 
     // Cortar el texto en el caracter 500 y poner puntos suspensivos
     if (str.length > 500) {
