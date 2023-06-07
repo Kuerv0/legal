@@ -3,11 +3,14 @@ import Client from './lib/client';
 import { newDocument } from './lib/helpers';
 import EditableDocumentList from './components/EditableDocumentList';
 import ToggleableDocumentForm from './components/ToggleableDocumentForm';
+import Modal from 'react-modal';
 
 const client = new Client();
 
 const DocumentsDashboard = () => {
   const [documents, setDocuments] = useState([]);
+  const [showModal, setShowModal] = useState(false)
+  const [modalContent, setModalContent] = useState([])
 
   const loadDocumentsFromServer = () => {
     client
@@ -68,6 +71,16 @@ const DocumentsDashboard = () => {
     });
   };
 
+  const handleOpenModal = (titulo, informacion) => {
+    setShowModal(true);
+    setModalContent([titulo, informacion])
+  }
+  
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setModalContent([])
+  }
+
   useEffect(() => {
     loadDocumentsFromServer();
     // setInterval(loadDocumentsFromServer, 5000);
@@ -81,12 +94,33 @@ const DocumentsDashboard = () => {
           documents={documents}
           onFormSubmit={handleEditFormSubmit}
           onTrashClick={handleTrashClick}
+          handleOpenModal={handleOpenModal}
         />
       </div>
       <div className="four wide column">
         <ToggleableDocumentForm onFormSubmit={handleCreateFormSubmit} />
       </div>
       <div className="two wide column"></div>
+
+      <Modal
+        isOpen={showModal}
+        contentLabel="Modal documento"
+        ariaHideApp={false}
+      >
+        <div className='closeModalDocument'>
+          <button onClick={handleCloseModal} className='ui basic red button'>X</button>
+        </div>
+
+        <h2 className='titleModalDocument'>{modalContent[0]}</h2>
+
+        <p className='textModalDocument'>
+          {modalContent[1]}
+        </p>
+
+        <div className='centerModalDocument'>
+          <button onClick={handleCloseModal} className='ui basic red button'>Cerrar</button>
+        </div>
+      </Modal>
     </div>
   );
 };

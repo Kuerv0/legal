@@ -1,13 +1,14 @@
 import EditableDocument from './EditableDocument';
 
 /* eslint-disable react/prop-types */
-const EditableDocumentList = ({ documents, onFormSubmit, onTrashClick }) => {
+const EditableDocumentList = ({ documents, onFormSubmit, onTrashClick, handleOpenModal }) => {
   const docs = documents.map((document) => (
     <EditableDocument
       key={document.id}
       document={document}
       onFormSubmit={onFormSubmit}
       onTrashClick={onTrashClick}
+      handleOpenModal={handleOpenModal}
     />
   ));
 

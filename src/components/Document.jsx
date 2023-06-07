@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const Document = ({ document, onEditClick, onTrashClick }) => {
+const Document = ({ document, onEditClick, onTrashClick, handleOpenModal }) => {
   const handleTrashClick = () => {
     onTrashClick(document.id);
   };
@@ -18,17 +18,29 @@ const Document = ({ document, onEditClick, onTrashClick }) => {
 
     return str
   }
+  
+  const cleanModalText = (str) => {
+    // Limpiar la información y los caracteres especiales
+    str = str.replace(/\t/g, ' ').trim();
+    str = str.replace(/\n\s*\n/g, '\n\n')
+    str = str.replace(/  +/g, ' ');
+    str = str.replace("Grabando...", '');
+  
+    return str
+  }
+
+  const titulo = `${document.tipo.charAt(0).toUpperCase() + document.tipo.slice(1)} ${String(document.numero).padStart(2, "0")} de ${document.anio}`
 
   return (
     <div className="item documento">
       <div className="icon">
-        <i className="huge file alternate outline icon" />
+        <i className="huge file alternate outline icon" onClick={() => handleOpenModal(titulo, cleanModalText(document.informacion))}/>
       </div>
 
       <div className="content">
-        <a href="document.id">
-          {document.tipo.charAt(0).toUpperCase() + document.tipo.slice(1)} {String(document.numero).padStart(2, "0")} de {document.anio} {}
-        </a>
+        <p onClick={() => handleOpenModal(titulo, cleanModalText(document.informacion))} className="tituloDocumento">
+          {titulo}
+        </p>
 
         <div className="description">
             {cleanText(document.informacion)}

@@ -28948,11 +28948,15 @@ a.ui.card:hover,
   cursor: pointer;
 }
 
-.ui.items > .item.documento a {
+.ui.items > .item.documento p {
   cursor: pointer;
-  font-size: 1.5rem
+  font-size: 1.5rem;
+  color: #4183C4;
 }
+
 .ui.items > .item.documento > .icon i {
+  color: #4183C4;
+  cursor: pointer;
   font-size: 3rem;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -38798,3 +38802,22 @@ body.pushable > .pusher {
 /*******************************
          Site Overrides
 *******************************/
+
+.closeModalDocument {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.textModalDocument {
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+.titleModalDocument {
+  text-align: center;
+}
+
+.centerModalDocument {
+  display: flex;
+  justify-content: center;
+}
