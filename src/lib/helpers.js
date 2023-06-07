@@ -3,7 +3,7 @@ export function newDocument(attrs) {
     id: new Date().getTime(),
     id_cuerpo_colegiado: 1,
     id_usuario: 11,
-    tipo: '',
+    tipo: 'Acuerdo',
     informacion: '',
     anio: new Date().getFullYear(),
     numero: '',

@@ -27412,6 +27412,16 @@ Floated Menu / Item
   border-radius: 0em;
 }
 
+.ui.formulario {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 2em;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+}
+
 .ui.cards > .card > .content:after,
 .ui.card > .content:after {
   display: block;

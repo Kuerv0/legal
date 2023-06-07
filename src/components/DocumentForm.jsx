@@ -28,7 +28,7 @@ const DocumentForm = ({ onFormSubmit, onFormClose, document = {} }) => {
   };
 
   return (
-    <div className="ui centered card">
+    <div className="ui formulario">
       <div className="content">
         <form className="ui form" onSubmit={handleSubmit}>
           <div className="field">
@@ -78,7 +78,7 @@ const DocumentForm = ({ onFormSubmit, onFormClose, document = {} }) => {
             </button>
             <button
               type="button"
-              className="ui basic button"
+              className="ui basic red button"
               onClick={onFormClose}
             >
               Cancelar
